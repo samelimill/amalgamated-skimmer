@@ -30,24 +30,24 @@ function init () {
         .prompt(prompts)
         .then((res) =>{
             var finalShape = '';
+            const svgHead = '<svg version="1.1"\nwidth="300" height="200"\nxmlns="http://www.w3.org/2000/svg">\n'
+            const svgTail = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${res.letters}</text>\n</svg>\n`
             if (res.shapes === 'Circle'){
-                const newShape = new Circle(res.letters, res.color);
+                const newShape = new Circle(res.color);
                 finalShape = newShape.circle;
-                console.log(finalShape);
             } else if (res.shapes === 'Square'){
-                const newShape = new Square(res.letters, res.color);
+                const newShape = new Square(res.color);
                 finalShape = newShape.square;
-                console.log(finalShape);
             } else if (res.shapes === 'Triangle'){
-                const newShape = new Triangle(res.letters, res.color);
+                const newShape = new Triangle(res.color);
                 finalShape = newShape.triangle;
-                console.log(finalShape);
             };
-            return finalShape;
+            const finalSVG = svgHead + finalShape + svgTail;
+            return finalSVG;
         })
         .then((res) =>{
-            fs.writeFile('example.svg', res, (err)=>
-            err ? console.error(err) : console.log('Commit logged!'))
+            fs.writeFile('examples/example.svg', res, (err)=>
+            err ? console.error(err) : console.log('SVG created!'))
         });
 };
 
