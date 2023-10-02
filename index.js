@@ -1,6 +1,6 @@
-const fs = require('fs');
 const inquirer = require('inquirer');
-const shapes = require('./lib/shapes');
+const fs = require('fs');
+const { Circle, Square, Triangle } = require('./lib/shapes');
 
 const prompts = [
     {
@@ -12,7 +12,7 @@ const prompts = [
         type: 'list',
         message: 'Please select one of the following shapes:',
         name: 'shapes',
-        options: [
+        choices: [
             'Circle',
             'Triangle',
             'Square'
@@ -25,9 +25,30 @@ const prompts = [
     }
 ]
 
-inquirer
-    .prompt(prompts)
-    .then((res) =>{
-        const finalShape = new `${res.shapes}`;
-        
-    });
+function init () {
+    inquirer
+        .prompt(prompts)
+        .then((res) =>{
+            var finalShape = '';
+            if (res.shapes === 'Circle'){
+                const newShape = new Circle(res.letters, res.color);
+                finalShape = newShape.circle;
+                console.log(finalShape);
+            } else if (res.shapes === 'Square'){
+                const newShape = new Square(res.letters, res.color);
+                finalShape = newShape.square;
+                console.log(finalShape);
+            } else if (res.shapes === 'Triangle'){
+                const newShape = new Triangle(res.letters, res.color);
+                finalShape = newShape.triangle;
+                console.log(finalShape);
+            };
+            return finalShape;
+        })
+        .then((res) =>{
+            fs.writeFile('example.svg', res, (err)=>
+            err ? console.error(err) : console.log('Commit logged!'))
+        });
+};
+
+init();

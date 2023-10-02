@@ -1,16 +1,17 @@
 {
-  "name": "amalgamated-skimmer",
-  "version": "1.0.0",
-  "description": "A SVG logo maker",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "inquirer": "^9.2.11"
-  }
+    "name": "amalgamated-skimmer",
+    "version": "1.0.0",
+    "description": "A simple SVG maker",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "jest": "^24.9.0"
+    },
+    "dependencies": {
+        "inquirer": "^8.2.6"
+    }
 }
