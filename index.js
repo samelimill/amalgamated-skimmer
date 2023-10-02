@@ -1,11 +1,12 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const { Circle, Square, Triangle } = require('./lib/shapes');
+const Text = require('./lib/text.js');
 
 const prompts = [
     {
         type: 'input',
-        message: 'Please enter up to three letters:',
+        message: 'Please enter up to three characters:',
         name: 'letters' 
     },
     {
@@ -36,7 +37,6 @@ function init () {
         .then((res) =>{
             var newShape = '';
             const svgHead = '<svg version="1.1"\nwidth="300" height="200"\nxmlns="http://www.w3.org/2000/svg">\n'
-            const svgTail = `<text x="150" y="100" font-size="60" text-anchor="middle" fill="${res.textcolor}">${res.letters}</text>\n</svg>\n`
             switch(res.shapes){
                 case 'Circle':
                     newShape = new Circle(res.color);
@@ -47,7 +47,8 @@ function init () {
                 case 'Triangle':
                     newShape = new Triangle(res.color);
             };
-            const finalSVG = svgHead + newShape.render() + svgTail;
+            const newText = new Text(res.textcolor, res.letters);
+            const finalSVG = svgHead + newShape.render() + newText.render();
             return finalSVG;
         }) 
         .then((res) =>{
