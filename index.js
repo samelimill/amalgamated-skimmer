@@ -9,6 +9,11 @@ const prompts = [
         name: 'letters' 
     },
     {
+        type: 'input',
+        message: 'Please enter a color for the text by keyword or hexadecimal number:',
+        name: 'textcolor'
+    },
+    {
         type: 'list',
         message: 'Please select one of the following shapes:',
         name: 'shapes',
@@ -20,7 +25,7 @@ const prompts = [
     },
     {
         type: 'input',
-        message: 'Please enter a color by keyword or hexadecimal number:',
+        message: 'Please enter a color for the shape by keyword or hexadecimal number:',
         name: 'color'
     }
 ]
@@ -29,26 +34,26 @@ function init () {
     inquirer
         .prompt(prompts)
         .then((res) =>{
-            var finalShape = '';
+            var newShape = '';
             const svgHead = '<svg version="1.1"\nwidth="300" height="200"\nxmlns="http://www.w3.org/2000/svg">\n'
-            const svgTail = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">${res.letters}</text>\n</svg>\n`
-            if (res.shapes === 'Circle'){
-                const newShape = new Circle(res.color);
-                finalShape = newShape.circle;
-            } else if (res.shapes === 'Square'){
-                const newShape = new Square(res.color);
-                finalShape = newShape.square;
-            } else if (res.shapes === 'Triangle'){
-                const newShape = new Triangle(res.color);
-                finalShape = newShape.triangle;
+            const svgTail = `<text x="150" y="100" font-size="60" text-anchor="middle" fill="${res.textcolor}">${res.letters}</text>\n</svg>\n`
+            switch(res.shapes){
+                case 'Circle':
+                    newShape = new Circle(res.color);
+                    break;
+                case 'Square':
+                    newShape = new Square(res.color);
+                    break;
+                case 'Triangle':
+                    newShape = new Triangle(res.color);
             };
-            const finalSVG = svgHead + finalShape + svgTail;
+            const finalSVG = svgHead + newShape.render() + svgTail;
             return finalSVG;
-        })
+        }) 
         .then((res) =>{
-            fs.writeFile('examples/example.svg', res, (err)=>
-            err ? console.error(err) : console.log('SVG created!'))
-        });
+            fs.writeFile('examples/logo.svg', res, (err)=>
+            err ? console.error(err) : console.log('Generated logo.svg'))
+             });
 };
 
 init();
