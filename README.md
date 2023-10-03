@@ -26,8 +26,8 @@ AND the output text "Generated logo.svg" is printed in the command line
 WHEN I open the `logo.svg` file in a browser
 THEN I am shown a 300x200 pixel image that matches the criteria I entered
 ```
-## Installation
-To use this app, the user will have to install Node.js as well as the Inquirer and Jest packages. The app can then be initalized by typing 'node index.js' into the command line.
+## Installation and Usage
+To use this app, the user will have to install Node.js as well as the Inquirer and Jest packages. The app can then be initalized by typing 'node index.js' into the command line, where the user will be allowed to enter their desired parameters for logos.
 
 ## Demo
 A demo video walking through the function of this app can be found [here.](https://drive.google.com/file/d/1Tjmo4UVp65x11PBfdRV1ReQ43WmE9w3O/view)
