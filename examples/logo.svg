@@ -1,9 +1,6 @@
 <svg version="1.1"
 width="300" height="200"
 xmlns="http://www.w3.org/2000/svg">
-
-<circle cx="150" cy="100" r="75" fill="green"/>
-
-<text x="150" y="110" font-size="50" font-family="Helvetica" text-anchor="middle" fill="#141414">A#J</text>
-
+<polygon points="150,182 244,18 56,18" fill="Red"/>
+<text x="150" y="110" font-size="50" font-family="Helvetica" text-anchor="middle" fill="Black">SAM</text>
 </svg>
